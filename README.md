@@ -12,3 +12,4 @@ A code quiz web page that saves initials and score
 * Once the quiz begins, a timer starts.
 
 * After the quiz ends, the user can save their initials and score to a highscores view using local storage.
+

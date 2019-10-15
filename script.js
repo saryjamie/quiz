@@ -46,12 +46,9 @@ function renderQuestion(){
     quiz = _("quiz");
     
     if(pos >= questions.length){
-        quiz.innerHTML = "<h2> You got " + correct + " of " + questions.length + " questions correct<br><br><br> Your final score is: " + totalScore + ".</h2><hr><br>Enter initials: " + "<input type='text' id='initials' required minlength='1' maxlength='3'><button  id='submitInitial' style='background-color: lightseagreen; color: white;'> Submit </button><br><br><div id='wrongMessage'></div>";
+        quiz.innerHTML = "<h2> You got " + correct + " of " + questions.length + " questions correct<br><br><br> Your final score is: " + totalScore + ".</h2><hr><br>Enter initials: " + "<input type='text' id='initials' required minlength='1' maxlength='3'><button  id='submitInitial' style='background-color: lightseagreen; color: white;'> Submit </button>";
         let initialsEl = document.getElementById("initials");
         
-        var wrongMessageEl = document.getElementById("wrongMessage");
-
-        wrongMessageEl = " ";
         const submitInitBtn = document.getElementById("submitInitial");
 
             submitInitBtn.addEventListener("click", function(event){
@@ -119,9 +116,9 @@ function checkAnswer(){
 function timesUp(){
 
     _("test_status").innerHTML = "<h1> Time's Up! </h1><br>";
-    quiz.innerHTML = "<h2> You got " + correct + " of " + questions.length + " questions correct<br><br><br> Your final score is: " + totalScore + ".</h2><hr><br>Enter initials: " + "<input type='text' id='initials' required minlength='1' maxlength='3'><button  id='submitInitial' style='background-color: lightseagreen; color: white;'> Submit </button><br><br><div id='wrongMessage'></div>";
+    // quiz.innerHTML = "<h2> You got " + correct + " of " + questions.length + " questions correct<br><br><br> Your final score is: " + totalScore + ".</h2><hr><br>Enter initials: " + "<input type='text' id='initials' required minlength='1' maxlength='3'><button  id='submitInitial' style='background-color: lightseagreen; color: white;'> Submit </button>";
 
-    resultEl.innerHTML = " ";
+    resultEl.innerHTML = "";
     let initialsEl = document.getElementById("initials");
     const submitInitBtn = document.getElementById("submitInitial");
 
