@@ -7,8 +7,10 @@ var finalIntEl = document.getElementById("finalInt");
 var intStorage = localStorage.getItem("intStorage");
 var score = localStorage.getItem("score");
 var highscoreDisplay = document.getElementById("grade");
-var timeEl = document.querySelector("#mainTimer");
+var timeEl = document.querySelector("#timer");
 let initialsEl = document.getElementById("initials");
+
+
 
 // create variable of a multidimensional array
 var questions = [
@@ -25,7 +27,12 @@ function setTime(){
     var timerInterval = setInterval(() => {
         secondsLeft--;
         timeEl.textContent = secondsLeft;
-    }, 7500);
+        if(secondsLeft < 1){
+            clearInterval(timerInterval);
+            timesUp();
+        }
+    }, 1000);
+
 }
 
 function _(x){
@@ -34,7 +41,7 @@ function _(x){
 
 function renderQuestion(){
     
-
+    setTime();
 
     quiz = _("quiz");
     
@@ -50,9 +57,14 @@ function renderQuestion(){
             submitInitBtn.addEventListener("click", function(event){
                 event.preventDefault();
                 var userIn = initialsEl.value;
+                if (initialsEl.value == '' || initialsEl.value == null){
+                    resultEl.innerHTML = "<p style= 'color: red;'>Invalid input. Please enter your initials!</p>";
+                }
+                else{
                 window.location = "final.html";
                 localStorage.setItem('userInitial', JSON.stringify(userIn));
                 highScore();
+                }
             });
 
 
@@ -78,11 +90,12 @@ function renderQuestion(){
     quiz.innerHTML += "<input type='radio' name='choices' value='D'> "+ chD + "<br><br>";
     // adding a button element to submit answer
     quiz.innerHTML += "<button onclick='checkAnswer()' style= 'background-color: lightseagreen; color: white; border-color: lightseagreen'> Submit Answer </button>" + "<br><br><hr>";
-
+    
     
 }
 
 function checkAnswer(){
+    
     choices = document.getElementsByName("choices"); // choices is an array of A, B, C, D values
     for (var i = 0; i < choices.length; i++) {
         if(choices[i].checked){
@@ -93,16 +106,41 @@ function checkAnswer(){
         resultEl.innerHTML = "<p style='color: green;'>Correct!</p>";
         correct++;
         totalScore = totalScore + 5;
-        localStorage.setItem('totalScore', JSON.stringify(totalScore));
-
     }
     else{
+        totalScore = 0;
         resultEl.innerHTML = "<p style='color: red;'>Wrong!</p>";
-     }
+        console.log(totalScore);
+    }
+    localStorage.setItem('totalScore', JSON.stringify(totalScore));
     pos++;
     renderQuestion();
 }
+function timesUp(){
 
+    _("test_status").innerHTML = "<h1> Time's Up! </h1><br>";
+    quiz.innerHTML = "<h2> You got " + correct + " of " + questions.length + " questions correct<br><br><br> Your final score is: " + totalScore + ".</h2><hr><br>Enter initials: " + "<input type='text' id='initials' required minlength='1' maxlength='3'><button  id='submitInitial' style='background-color: lightseagreen; color: white;'> Submit </button><br><br><div id='wrongMessage'></div>";
+
+    resultEl.innerHTML = " ";
+    let initialsEl = document.getElementById("initials");
+    const submitInitBtn = document.getElementById("submitInitial");
+
+    submitInitBtn.addEventListener("click", function(event){
+        event.preventDefault();
+        var userIn = initialsEl.value;
+        if (initialsEl.value == '' || initialsEl.value == null){
+            resultEl.innerHTML = "<p style= 'color: red;'>Invalid input. Please enter your initials!</p>";
+        }
+        else{
+        window.location = "final.html";
+        localStorage.setItem('userInitial', JSON.stringify(userIn));
+        highScore();
+        }
+    });
+
+
+
+}
 function highScore(){
 
     var clrBtn = _("clearHighscores");
@@ -113,26 +151,27 @@ function highScore(){
     console.log(retrieveScore);
     console.log(retrieveInitials);
     
-    highscoreDisplay.innerHTML = retrieveInitials + " - " + retrieveScore;
+    highscoreDisplay.innerHTML += retrieveInitials + ": " + retrieveScore;
 
-    renderGrades();
+    // renderGrades();
 
-    clrBtn.addEventListener("click", function(){
+    clrBtn.addEventListener("click", function(event){
+        event.preventDefault();
         document.getElementById("grade").innerHTML = "";
         
     });
 }
-function renderGrades(){
+// function renderGrades(){
  
-    var arr = [];
-    for (var i = 0; i < 10; i++){
-        arr.push(highscoreDisplay + i);
-        var li = document.createElement("li");
-        li.textContent = highscoreDisplay;
-       highscoreDisplay += li;
-    }
+//     var arr = [];
+//     for (var i = 0; i < 10; i++){
+//         arr.push(highscoreDisplay + i);
+//         var li = document.createElement("li");
+//         li.textContent = highscoreDisplay;
+//        highscoreDisplay += li;
+//     }
 
-}
+// }
 
 
 window.addEventListener("load", highScore, false);
