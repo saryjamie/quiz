@@ -41,7 +41,7 @@ function _(x){
 
 function renderQuestion(){
     
-    setTime();
+    //setTime();
 
     quiz = _("quiz");
     
@@ -172,5 +172,8 @@ function highScore(){
 
 
 window.addEventListener("load", highScore, false);
-window.addEventListener("load", renderQuestion, false);
+window.addEventListener("load", function() {
+    setTime()
+    renderQuestion()
+});
 
