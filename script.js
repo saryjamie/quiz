@@ -108,6 +108,7 @@ function checkAnswer(){
         totalScore = 0;
         resultEl.innerHTML = "<p style='color: red;'>Wrong!</p>";
         console.log(totalScore);
+        secondsLeft = secondsLeft - 10;
     }
     localStorage.setItem('totalScore', JSON.stringify(totalScore));
     pos++;
