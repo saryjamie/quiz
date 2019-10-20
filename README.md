@@ -11,5 +11,8 @@ A code quiz web page that saves initials and score
 
 * Once the quiz begins, a timer starts.
 
+* If the answer is wrong timer will deduct 10 seconds from the total quiz time as a penalty 
+
 * After the quiz ends, the user can save their initials and score to a highscores view using local storage.
 
+© 2019 Sary Jamie. All Rights Reserved.
