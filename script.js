@@ -137,7 +137,7 @@ function renderQuestion() {
     "<input type='radio' name='choices' value='D'> " + chD + "<br><br>";
   // adding a button element to submit answer
   quiz.innerHTML +=
-    "<button onclick='checkAnswer()' style= 'background-color: lightseagreen; color: white; border-color: lightseagreen'> Submit Answer </button>" +
+    "<button onclick='checkAnswer()' style= 'background-color: lightseagreen; color: white; border-color: lightseagreen'> Submit Answer</button>" +
     "<br><br><hr>";
 }
 
