@@ -22,7 +22,7 @@ let initialsEl = document.getElementById("initials");
 // create variable of a multidimensional array
 var questions = [
   [
-    "The condition in an if / else statement is enclosed within ____.",
+    "The condition in an if/else statement is enclosed within ____.",
     "Quotes",
     "Curly brackets",
     "Parentheses",
