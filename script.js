@@ -26,7 +26,7 @@ var questions = [
     "Quotes",
     "Curly brackets",
     "Parentheses",
-    "Squares",
+    "Square brackets",
     "C",
   ],
   [
